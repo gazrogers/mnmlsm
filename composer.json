@@ -1,0 +1,30 @@
+{
+    "require-dev": {
+        "codeception/codeception": "^4.1",
+        "codeception/module-rest": "^1.2",
+        "codeception/module-phalcon4": "^1.0"
+    },
+    "require": {
+        "phalcon/migrations": "^2.1"
+    },
+    "scripts": {
+        "settestenv": [
+            "@putenv DB_USER=testdbuser",
+            "@putenv DB_PASSWORD=testdbpassword",
+            "@putenv DB_PREFIX=autotest_"
+        ],
+        "test": [
+            "@settestenv",
+            "codecept run"
+        ],
+        "test api": "@test api",
+        "test functional": "@test functional",
+        "test unit": "@test unit",
+        "test-with-coverage": [
+            "@settestenv",
+            "codecept run --coverage-html"
+        ],
+        "db_migration_generate": "phalcon-migrations generate --config=phalcon_migration_config.php",
+        "db_migration_run": "phalcon-migrations run --config=phalcon_migration_config.php"
+    }
+}
